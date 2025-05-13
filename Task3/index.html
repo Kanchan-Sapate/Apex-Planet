@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-mode">
+          <button class="toggle-btn" onclick="toggleDarkMode()">🌙Dark Mode</button>
+        </div>
+    
+        <div class="box">
+          <h2>🌟 Simple Quiz</h2>
+          <div id="quiz">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <button class="next-btn" onclick="nextQuestion()">Next</button>
+            <div class="result" id="result"></div>
+          </div>
+        </div>
+    
+        <div class="box">
+          <h3>🌤️ Check Weather</h3>
+          <input type="text" id="city" placeholder="Enter city name">
+          <button class="get-weather" onclick="getWeather()">Get Weather</button>
+          <div class="weather-result" id="weather"></div>
+        </div>
+    
+        <div class="box">
+          <h3>😂 Get a Joke</h3>
+          <button class="joke-btn" onclick="getJoke()">Tell me a joke</button>
+          <div class="joke" id="joke"></div>
+        </div>
+    
+        <div class="box">
+          <h3>🖼️ Image Carousel</h3>
+          <div class="carousel">
+            <img class="carousel-img active" src="slide-1.jpg" alt="Slide 1">
+            <img class="carousel-img" src="slide-2.jpg" alt="Slide 2">
+            <img class="carousel-img" src="slide-3.webp" alt="Slide 3">
+          </div>
+        </div>
+      </div>
+    
+      <footer>
+        © Created by Kanchan 💖
+      </footer>
+    
+      
+  <script src="script.js"></script>
+    
+</body>
+</html>

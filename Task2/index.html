@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduVision - Online Courses</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="logo">
+      <img src="assets/freepik__background__49357.png" alt="EduVision Logo">
+      <h1>EduVision</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h2>Learn Anytime, Anywhere</h2>
+      <p>Join our best online courses and boost your career from home.</p>
+      <a href="#courses" class="btn">Explore Courses</a>
+    </div>
+    <div class="hero-img">
+      <img src="assets/7915189_3784896.jpg" alt="Online Learning">
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses" id="courses">
+    <h2>Popular Courses</h2>
+    <div class="course-container">
+      <div class="course-card">
+        <img src="assets/website-development-links-seo-webinar-cyberspace-concept.jpg" alt="Web Development">
+        <h3>Web Development</h3>
+        <p>HTML, CSS, JavaScript, and MERN stack. Build full web apps from scratch.</p>
+      </div>
+      <div class="course-card">
+        <img src="assets/representation-user-experience-interface-design.jpg" alt="Data Science">
+        <h3>Data Science</h3>
+        <p>Python, Pandas, ML, and real-world projects to become a data expert.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2>About EduVision</h2>
+    <p>EduVision is a platform offering quality education and real-world skills through engaging courses, expert instructors, and a flexible learning experience.</p>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send</button>
+      <p id="formMessage"></p>
+    </form>
+    
+    <p id="formMessage"></p>
+  </section>
+
+  <section class="gallery-section">
+  <h2>Student Projects Gallery</h2>
+  <p>Upload screenshots or image links of your course projects. Click on an image to remove it from the gallery.</p>
+
+  <form class="gallery-form" onsubmit="event.preventDefault(); addImage();">
+    <label for="imageURL">Project Image URL:</label>
+    <input type="text" id="imageURL" placeholder="e.g. https://picsum.photos/200/150" required>
+    <button type="submit">Add to Gallery</button>
+  </form>
+
+  <div class="gallery" id="imageGallery"></div>
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EduVision. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
