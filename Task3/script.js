@@ -1,86 +1,137 @@
-const quizData = [
-    {
-      question: "What does HTML stand for?",
-      options: ["HyperText Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
-      answer: 0
-    },
-    {
-      question: "Which language is used for styling web pages?",
-      options: ["HTML", "jQuery", "CSS"],
-      answer: 2
-    },
-    {
-      question: "Which is not a JavaScript Framework?",
-      options: ["Python Script", "JQuery", "NodeJS"],
-      answer: 0
-    }
-  ];
+const wrapper = document.querySelector(".sliderWrapper");
+const menuItems = document.querySelectorAll(".menuItem");
 
-  let current = 0;
-  let score = 0;
+const products = [
+  {
+    id: 1,
+    title: "Air Force",
+    price: 119,
+    colors: [
+      {
+        code: "black",
+        img: "./img/air.png",
+      },
+      {
+        code: "darkblue",
+        img: "./img/air2.png",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Air Jordan",
+    price: 149,
+    colors: [
+      {
+        code: "lightgray",
+        img: "./img/jordan.png",
+      },
+      {
+        code: "green",
+        img: "./img/jordan2.png",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Blazer",
+    price: 109,
+    colors: [
+      {
+        code: "lightgray",
+        img: "./img/blazer.png",
+      },
+      {
+        code: "green",
+        img: "./img/blazer2.png",
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Crater",
+    price: 129,
+    colors: [
+      {
+        code: "black",
+        img: "./img/crater.png",
+      },
+      {
+        code: "lightgray",
+        img: "./img/crater2.png",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Hippie",
+    price: 99,
+    colors: [
+      {
+        code: "gray",
+        img: "./img/hippie.png",
+      },
+      {
+        code: "black",
+        img: "./img/hippie2.png",
+      },
+    ],
+  },
+];
 
-  function loadQuestion() {
-    document.getElementById('result').innerText = '';
-    const q = quizData[current];
-    document.getElementById('question').innerText = q.question;
-    const optionsDiv = document.getElementById('options');
-    optionsDiv.innerHTML = '';
-    q.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.innerText = opt;
-      btn.onclick = () => checkAnswer(i);
-      optionsDiv.appendChild(btn);
+let choosenProduct = products[0];
+
+const currentProductImg = document.querySelector(".productImg");
+const currentProductTitle = document.querySelector(".productTitle");
+const currentProductPrice = document.querySelector(".productPrice");
+const currentProductColors = document.querySelectorAll(".color");
+const currentProductSizes = document.querySelectorAll(".size");
+
+menuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    //change the current slide
+    wrapper.style.transform = `translateX(${-100 * index}vw)`;
+
+    //change the choosen product
+    choosenProduct = products[index];
+
+    //change texts of currentProduct
+    currentProductTitle.textContent = choosenProduct.title;
+    currentProductPrice.textContent = "$" + choosenProduct.price;
+    currentProductImg.src = choosenProduct.colors[0].img;
+
+    //assing new colors
+    currentProductColors.forEach((color, index) => {
+      color.style.backgroundColor = choosenProduct.colors[index].code;
     });
-  }
+  });
+});
 
-  function checkAnswer(selected) {
-    const correct = quizData[current].answer;
-    if (selected === correct) {
-      score++;
-      document.getElementById('result').innerText = '✅ Correct!';
-    } else {
-      document.getElementById('result').innerText = '❌ Wrong!';
-    }
-  }
+currentProductColors.forEach((color, index) => {
+  color.addEventListener("click", () => {
+    currentProductImg.src = choosenProduct.colors[index].img;
+  });
+});
 
-  function nextQuestion() {
-    current++;
-    if (current < quizData.length) {
-      loadQuestion();
-    } else {
-      document.getElementById('quiz').innerHTML = `<h3>You scored ${score}/${quizData.length}</h3>`;
-    }
-  }
+currentProductSizes.forEach((size, index) => {
+  size.addEventListener("click", () => {
+    currentProductSizes.forEach((size) => {
+      size.style.backgroundColor = "white";
+      size.style.color = "black";
+    });
+    size.style.backgroundColor = "black";
+    size.style.color = "white";
+  });
+});
 
-  loadQuestion();
+const productButton = document.querySelector(".productButton");
+const payment = document.querySelector(".payment");
+const close = document.querySelector(".close");
 
-  async function getWeather() {
-    const city = document.getElementById("city").value;
-    if (!city) return;
-    const apiKey = "YOUR_API_KEY"; // Replace with valid API Key
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
-    const data = await res.json();
-    if (data.cod === 200) {
-      document.getElementById("weather").innerText = `${data.name}: ${data.main.temp}°C, ${data.weather[0].main}`;
-    } else {
-      document.getElementById("weather").innerText = "City not found!";
-    }
-  }
+productButton.addEventListener("click", () => {
+  payment.style.display = "flex";
+});
 
-  async function getJoke() {
-    const res = await fetch("https://official-joke-api.appspot.com/random_joke");
-    const data = await res.json();
-    document.getElementById("joke").innerText = `${data.setup} 😂 ${data.punchline}`;
-  }
-
-  let currentSlide = 0;
-  const slides = document.querySelectorAll(".carousel-img");
-  setInterval(() => {
-    slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
-  }, 3000);
-
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-  }
+close.addEventListener("click", () => {
+  payment.style.display = "none";
+});
